@@ -4,18 +4,15 @@ async function fetchData() {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
 
         if (!response.ok) {
-            throw new Error("Couldn't fetch the resource");
+            document.getElementById("image").innerHTML = "No such Pokémon exists.";
         }
 
         const data = await response.json();
         const pokemonSprite = data.sprites.front_default;
-        const imgElement = document.getElementById("pokemonSprite");
 
-        imgElement.src = pokemonSprite;
-        imgElement.style.display = "block";
+        document.getElementById("image").innerHTML=`<img src="${pokemonSprite}" alt="Pokemon sprite" display: block;`;
     }
-
+    
     catch(error) {
-        console.error(error);
     }
 }
